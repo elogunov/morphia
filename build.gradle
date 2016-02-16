@@ -27,7 +27,6 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
 }
 
-
 configure(subprojects.findAll { it.name != 'util' }) {
     apply plugin: 'java'
     apply plugin: 'idea'
@@ -38,8 +37,6 @@ configure(subprojects.findAll { it.name != 'util' }) {
     apply plugin: 'optional-base'
 
     group = 'org.mongodb.morphia'
-    sourceCompatibility = JavaVersion.VERSION_1_6
-    targetCompatibility = JavaVersion.VERSION_1_6
 
     evaluationDependsOn(':util')
 
@@ -125,6 +122,11 @@ configure(subprojects.findAll { it.name != 'util' }) {
         options.charSet 'UTF-8'
         options.docEncoding 'UTF-8'
     }
+}
+
+configure(subprojects.findAll { it.name != 'java8' }) {
+    sourceCompatibility = JavaVersion.VERSION_1_6
+    targetCompatibility = JavaVersion.VERSION_1_6
 }
 
 task clirrRootReport(type: org.kordamp.gradle.clirr.ClirrReportTask) << {
